@@ -615,9 +615,9 @@ a {
 }
 
 .product-banner {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
+  width: calc(100% + 96px);
+  max-width: calc(100% + 96px);
+  margin: 0 -48px;
   overflow: hidden;
   border-radius: 4px;
   transition: transform 0.6s var(--transition-smooth);
@@ -630,6 +630,7 @@ a {
 .product-banner img {
   width: 100%;
   height: auto;
+  display: block;
 }
 
 /* ========== Section 5: Retro Runner ========== */
