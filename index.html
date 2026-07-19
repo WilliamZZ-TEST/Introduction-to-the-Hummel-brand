@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>hummel - Heritage-Driven Sport Lifestyle Brand</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ========== CSS Custom Properties ========== */
+:root {
+  --bg-dark: #111111;
+  --bg-light: #F5F2EE;
+  --text-dark: #1A1A1A;
+  --text-mid: #666666;
+  --text-light: #999999;
+  --accent-red: #E31837;
+  --accent-gold: #C9A96E;
+  --white: #FFFFFF;
+  --font-primary: 'Inter', 'Noto Sans SC', sans-serif;
+  --transition-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* ========== Reset & Base ========== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-primary);
+  color: var(--text-dark);
+  background: var(--bg-dark);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ========== Navigation ========== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 24px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.6s var(--transition-smooth), padding 0.4s var(--transition-smooth);
+}
+
+.nav.scrolled {
+  background: rgba(17, 17, 17, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 16px 48px;
+}
+
+.nav-logo {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--white);
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--white);
+}
+
+/* ========== Section Base ========== */
+.section {
+  position: relative;
+  overflow: hidden;
+}
+
+.section-light {
+  background: var(--bg-light);
+}
+
+.section-dark {
+  background: var(--bg-dark);
+  color: var(--white);
+}
+
+.section-transition {
+  background: #EBE8E3;
+}
+
+/* ========== Fade-in Animation ========== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s var(--transition-smooth), transform 0.8s var(--transition-smooth);
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in-delay-1 { transition-delay: 0.15s; }
+.fade-in-delay-2 { transition-delay: 0.3s; }
+.fade-in-delay-3 { transition-delay: 0.45s; }
+.fade-in-delay-4 { transition-delay: 0.6s; }
+
+/* ========== Section 1: Hero ========== */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 24px;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.hero-title {
+  font-size: clamp(48px, 8vw, 80px);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 24px;
+}
+
+.hero-subtitle {
+  font-size: clamp(12px, 1.5vw, 16px);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.hero-scroll-icon {
+  width: 16px;
+  height: 24px;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+  position: relative;
+}
+
+.hero-scroll-icon::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 1px;
+  animation: scrollBounce 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+  50% { transform: translateX(-50%) translateY(6px); opacity: 0.3; }
+}
+
+/* ========== Section 2: Brand Statement ========== */
+.brand-statement {
+  padding: 160px 48px 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.brand-quote {
+  font-size: clamp(22px, 3vw, 36px);
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--text-dark);
+  max-width: 800px;
+  font-style: italic;
+  margin-bottom: 40px;
+  letter-spacing: 0.01em;
+}
+
+.brand-quote-cn {
+  font-size: 14px;
+  color: var(--text-mid);
+  letter-spacing: 0.05em;
+  margin-bottom: 80px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 700;
+  color: var(--text-dark);
+  letter-spacing: 0.02em;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-light);
+}
+
+/* ========== Section 3: Heritage ========== */
+.heritage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.heritage-inner {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 120px 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.heritage-visual {
+  position: relative;
+}
+
+.heritage-visual img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  transition: transform 0.6s var(--transition-smooth);
+}
+
+.heritage-visual img:hover {
+  transform: scale(1.02);
+}
+
+.heritage-text h2 {
+  font-size: clamp(14px, 1.5vw, 16px);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 12px;
+}
+
+.heritage-text h1 {
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+}
+
+.heritage-text h1 span {
+  display: block;
+  font-size: clamp(12px, 1.2vw, 14px);
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 8px;
+}
+
+.heritage-text p {
+  font-size: 15px;
+  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.65);
+  margin-top: 32px;
+  max-width: 480px;
+}
+
+.heritage-insert {
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  max-width: 480px;
+}
+.heritage-insert img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: grayscale(20%) contrast(1.05);
+  transition: filter 0.6s var(--transition-smooth);
+}
+.heritage-insert:hover img {
+  filter: grayscale(0%) contrast(1);
+}
+.heritage-insert-caption {
+  font-size: 0.72rem !important;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-light) !important;
+  margin-top: 0.6rem !important;
+  margin-bottom: 0;
+}
+
+.heritage-values {
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.value-item {
+  padding: 20px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.value-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-red);
+  margin-bottom: 6px;
+}
+
+.value-text {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  font-style: italic;
+}
+
+/* ========== Section: hummel History ========== */
+.hummel-history {
+  padding: 140px 48px 120px;
+}
+.history-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.history-inner h2 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.02em;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+.history-inner h2 span {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--text-light);
+  letter-spacing: 0.15em;
+  margin-top: 0.5rem;
+}
+.history-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.history-image {
+  width: 100%;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+}
+.history-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--transition-smooth);
+}
+.history-image:hover img {
+  transform: scale(1.03);
+}
+.history-text {
+  text-align: left;
+}
+.history-quote {
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--white);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  padding-left: 1.5rem;
+  border-left: 2px solid var(--accent-red);
+}
+.history-body {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.9;
+  margin-bottom: 1.2rem;
+}
+.history-tag {
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: var(--accent-red);
+  font-weight: 600;
+  margin-top: 1.5rem;
+}
+
+/* ========== Section 5: German Trainer ========== */
+.german-trainer {
+  padding: 140px 48px 120px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.german-trainer .section-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 12px;
+}
+
+.german-trainer h2 {
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 60px;
+}
+
+.german-trainer h2 span {
+  display: block;
+  font-size: 0.45em;
+  font-weight: 400;
+  color: var(--text-mid);
+  letter-spacing: 0.1em;
+  margin-top: 4px;
+}
+
+.product-main {
+  width: 70%;
+  max-width: 800px;
+  margin: 0 auto 48px;
+  transition: transform 0.6s var(--transition-smooth);
+}
+
+.product-main:hover {
+  transform: scale(1.02);
+}
+
+.product-main img {
+  width: 100%;
+  height: auto;
+}
+
+.product-specs {
+  font-size: 13px;
+  color: var(--text-mid);
+  letter-spacing: 0.08em;
+  margin-bottom: 80px;
+}
+
+.product-banner {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 4px;
+  transition: transform 0.6s var(--transition-smooth);
+}
+
+.product-banner:hover {
+  transform: scale(1.01);
+}
+
+.product-banner img {
+  width: 100%;
+  height: auto;
+}
+
+/* ========== Section 5: Retro Runner ========== */
+.retro-runner {
+  padding: 140px 48px 120px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.retro-runner h2 {
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
+}
+
+.retro-runner h2 span {
+  display: block;
+  font-size: 0.45em;
+  font-weight: 400;
+  color: var(--text-mid);
+  letter-spacing: 0.1em;
+  margin-top: 4px;
+}
+
+.retro-runner-desc {
+  font-size: 14px;
+  color: var(--text-mid);
+  letter-spacing: 0.06em;
+  margin-bottom: 60px;
+}
+
+.retro-product {
+  width: 60%;
+  max-width: 700px;
+  margin: 0 auto;
+  transition: transform 0.6s var(--transition-smooth);
+}
+
+.retro-product:hover {
+  transform: scale(1.02);
+}
+
+.retro-product img {
+  width: 100%;
+  height: auto;
+}
+
+/* ========== Section 6: Sport Culture AW25 ========== */
+.sport-culture {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sport-culture-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.sport-culture-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sport-culture-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(17, 17, 17, 0.55);
+  z-index: 1;
+}
+
+.sport-culture-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 48px;
+  max-width: 900px;
+}
+
+.sport-culture-content h2 {
+  font-size: clamp(48px, 8vw, 96px);
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 16px;
+  mix-blend-mode: overlay;
+}
+
+.sport-culture-content .season {
+  font-size: clamp(12px, 1.5vw, 16px);
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 48px;
+}
+
+.sport-culture-content .culture-quote {
+  font-size: clamp(16px, 2vw, 22px);
+  font-weight: 300;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 640px;
+  margin: 0 auto;
+  font-style: italic;
+}
+
+.sport-culture-content .culture-detail {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.8;
+  margin-top: 24px;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ========== Section: Lifestyle Products ========== */
+.lifestyle {
+  padding: 10rem 2rem;
+  background: var(--bg-light);
+}
+.lifestyle-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+.lifestyle-intro {
+  font-size: 1.05rem;
+  color: var(--text-mid);
+  max-width: 680px;
+  margin: 1rem auto 5rem;
+  line-height: 1.9;
+}
+.lifestyle-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  text-align: left;
+}
+.lifestyle-item {
+  display: flex;
+  flex-direction: column;
+}
+.lifestyle-image {
+  width: 100%;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  background: #fff;
+}
+.lifestyle-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--transition-smooth);
+}
+.lifestyle-image:hover img {
+  transform: scale(1.03);
+}
+.lifestyle-tag {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-red);
+  margin-bottom: 0.6rem;
+  font-weight: 500;
+}
+.lifestyle-item h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.02em;
+}
+.lifestyle-item p {
+  font-size: 0.88rem;
+  color: var(--text-mid);
+  line-height: 1.8;
+}
+
+/* ========== Section: Nordic Style ========== */
+.nordic-style {
+  padding: 10rem 2rem;
+}
+.nordic-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+.nordic-intro {
+  font-size: 1.05rem;
+  color: var(--text-mid);
+  max-width: 680px;
+  margin: 1rem auto 4rem;
+  line-height: 1.9;
+}
+.nordic-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  text-align: left;
+}
+.nordic-item {
+  padding: 0;
+}
+.nordic-tag {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-red);
+  margin-bottom: 0.8rem;
+  font-weight: 500;
+}
+.nordic-item h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.02em;
+}
+.nordic-item p {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+/* ========== Section: Clean Fit ========== */
+.clean-fit {
+  padding: 140px 48px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.clean-fit-image {
+  width: 85%;
+  max-width: 1100px;
+  margin: 0 auto 60px;
+  overflow: hidden;
+  border-radius: 4px;
+  transition: transform 0.6s var(--transition-smooth);
+}
+
+.clean-fit-image:hover {
+  transform: scale(1.01);
+}
+
+.clean-fit-image img {
+  width: 100%;
+  height: auto;
+}
+
+.clean-fit h2 {
+  font-size: clamp(36px, 5vw, 60px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.clean-fit .subtitle {
+  font-size: 14px;
+  color: var(--text-mid);
+  letter-spacing: 0.1em;
+}
+
+/* ========== Section 8: China Ambition ========== */
+.china-ambition {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.china-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 120px 48px;
+  text-align: center;
+}
+
+.china-inner h2 {
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
+}
+
+.china-inner h2 span {
+  display: block;
+  font-size: 0.55em;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.08em;
+  margin-top: 8px;
+}
+
+.china-strategies {
+  margin: 48px 0 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Europe bar */
+.europe-bar {
+  margin: 40px 0 32px;
+  text-align: left;
+  padding: 28px 32px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.02);
+}
+.europe-title {
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+.europe-desc {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.85;
+}
+
+.china-divider {
+  width: 40px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.15);
+  margin: 0 auto 40px;
+}
+
+.china-main {
+  margin-bottom: 36px;
+}
+.china-main-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 12px;
+  letter-spacing: 0.04em;
+}
+.china-main-intro {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.85;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.strategy-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  text-align: left;
+  padding: 28px 32px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.strategy-item:hover {
+  border-color: rgba(227, 24, 55, 0.3);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.strategy-num {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent-red);
+  line-height: 1;
+  min-width: 32px;
+}
+
+.strategy-text h3 {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+
+.strategy-text h3 span {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.4);
+  margin-left: 8px;
+}
+
+.strategy-text p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.7;
+  margin-top: 4px;
+}
+
+.china-quote {
+  font-size: 15px;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.5);
+  border-left: 2px solid var(--accent-gold);
+  padding-left: 24px;
+  text-align: left;
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* ========== Section 9: KOL Collaboration ========== */
+.kol-section {
+  padding: 140px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.kol-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.kol-inner h2 {
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+
+.kol-inner h2 span {
+  display: block;
+  font-size: 0.45em;
+  font-weight: 400;
+  color: var(--text-mid);
+  letter-spacing: 0.08em;
+  margin-top: 4px;
+}
+
+.kol-grid {
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.kol-card:last-child {
+  grid-column: 1 / -1;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.kol-card {
+  padding: 40px 32px;
+  text-align: left;
+  border: 1px solid rgba(26, 26, 26, 0.1);
+  border-radius: 6px;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.kol-card:hover {
+  border-color: rgba(227, 24, 55, 0.25);
+  transform: translateY(-2px);
+}
+
+.kol-num {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--accent-red);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.kol-card h3 {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.kol-card h3 span {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-light);
+  margin-left: 8px;
+}
+
+.kol-card p {
+  font-size: 14px;
+  color: var(--text-mid);
+  line-height: 1.7;
+  margin-top: 8px;
+}
+
+.kol-platforms {
+  margin-top: 64px;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.platform-tag {
+  padding: 10px 24px;
+  border: 1px solid rgba(26, 26, 26, 0.15);
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--text-mid);
+  transition: all 0.3s ease;
+}
+
+.platform-tag:hover {
+  border-color: var(--accent-red);
+  color: var(--accent-red);
+}
+
+/* ========== Section 10: CTA Ending ========== */
+.cta-ending {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cta-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.cta-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.cta-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(17, 17, 17, 0.6);
+  z-index: 1;
+}
+
+.cta-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 48px;
+}
+
+.cta-content h2 {
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
+}
+
+.cta-content h2 span {
+  display: block;
+  font-size: 0.5em;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.1em;
+  margin-top: 8px;
+}
+
+.cta-signature {
+  margin-top: 48px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+}
+
+.cta-contact {
+  margin-top: 64px;
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-contact-item {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.cta-contact-item strong {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+}
+
+/* ========== Footer ========== */
+.footer {
+  padding: 32px 48px;
+  background: var(--bg-dark);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-text {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.25);
+  letter-spacing: 0.1em;
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 1024px) {
+  .heritage-inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding: 80px 32px;
+  }
+
+  .heritage-visual {
+    order: -1;
+  }
+
+  .history-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .hummel-history {
+    padding: 100px 32px 80px;
+  }
+
+  .kol-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-grid {
+    gap: 32px;
+  }
+
+  .lifestyle-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav {
+    padding: 16px 24px;
+  }
+
+  .nav.scrolled {
+    padding: 12px 24px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .brand-statement {
+    padding: 100px 24px 80px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .heritage-inner {
+    padding: 80px 24px;
+  }
+
+  .german-trainer,
+  .retro-runner,
+  .clean-fit,
+  .kol-section {
+    padding: 100px 24px 80px;
+  }
+
+  .nordic-style {
+    padding: 80px 24px 60px;
+  }
+  .nordic-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .lifestyle {
+    padding: 80px 24px 60px;
+  }
+  .lifestyle-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .lifestyle-intro {
+    margin-bottom: 3rem;
+  }
+
+  .product-main {
+    width: 90%;
+  }
+
+  .retro-product {
+    width: 85%;
+  }
+
+  .china-inner {
+    padding: 80px 24px;
+  }
+
+  .strategy-item {
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px 24px;
+  }
+
+  .china-quote {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 24px;
+  }
+
+  .clean-fit-image {
+    width: 100%;
+  }
+
+  .cta-content {
+    padding: 0 24px;
+  }
+
+  .cta-contact {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .footer {
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px;
+  }
+
+  .sport-culture-content h2 {
+    mix-blend-mode: normal;
+  }
+}
+
+@media (max-width: 480px) {
+  .stat-number {
+    font-size: 32px;
+  }
+
+  .kol-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+  <div class="nav-logo">hummel</div>
+  <ul class="nav-links">
+    <li><a href="#heritage">Heritage</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#culture">Culture</a></li>
+    <li><a href="#collaborate">Collaborate</a></li>
+  </ul>
+</nav>
+
+<!-- Section 1: Hero -->
+<section class="hero section section-dark" id="hero">
+  <div class="hero-bg">
+    <img src="assets/sport_culture_hero.png" alt="hummel Sport Culture Campaign" loading="eager">
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">hummel</h1>
+    <p class="hero-subtitle">丹麦百年运动生活方式品牌<br>Heritage-Driven Sport Lifestyle Brand</p>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="hero-scroll-icon"></div>
+  </div>
+</section>
+
+<!-- Section 2: Brand Statement -->
+<section class="brand-statement section section-light" id="statement">
+  <blockquote class="brand-quote fade-in">
+    "We are a heritage-driven sport & lifestyle brand rooted in football, dedicated to the team and the unifying power of sport."
+  </blockquote>
+  <p class="brand-quote-cn fade-in fade-in-delay-1">源自1923年的丹麦，世界上第一双带钉足球鞋的创造者</p>
+  <div class="stats-grid fade-in fade-in-delay-2">
+    <div class="stat-item">
+      <div class="stat-number">1923</div>
+      <div class="stat-label">Founded / 创立年份</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">35+</div>
+      <div class="stat-label">Markets / 覆盖市场</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">100+</div>
+      <div class="stat-label">Years / 年历史</div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 3: Heritage -->
+<section class="heritage section section-dark" id="heritage">
+  <div class="heritage-inner">
+    <div class="heritage-visual fade-in">
+      <img src="assets/heritage_campaign.png" alt="hummel Heritage" loading="lazy">
+    </div>
+    <div class="heritage-text">
+      <h2 class="fade-in">Heritage / 传承</h2>
+      <h1 class="fade-in fade-in-delay-1">
+        百年运动基因
+        <span>Century of Sport</span>
+      </h1>
+      <div class="heritage-insert fade-in fade-in-delay-2">
+        <img src="assets/heritage_1970.webp" alt="hummel 1970s Danish National Team" loading="lazy">
+        <p class="heritage-insert-caption">1970s · Danish National Team / 丹麦国家队</p>
+      </div>
+      <p class="fade-in fade-in-delay-2">
+        hummel在丹麦语中意为"大黄蜂"，象征以小博大的勇气与韧性。1923年创立，从皇家马德里到丹麦国家队，百年足球 heritage 深植品牌血脉。
+      </p>
+      <div class="heritage-values">
+        <div class="value-item fade-in fade-in-delay-2">
+          <div class="value-label">Mission</div>
+          <div class="value-text">"Focus on growing business to become one of the top 10 sports brands"</div>
+        </div>
+        <div class="value-item fade-in fade-in-delay-3">
+          <div class="value-label">Vision</div>
+          <div class="value-text">"Change the world through sport"</div>
+        </div>
+        <div class="value-item fade-in fade-in-delay-4">
+          <div class="value-label">Brand</div>
+          <div class="value-text">"Sport has the power to unite us"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 4: hummel History -->
+<section class="hummel-history section section-dark" id="history">
+  <div class="history-inner">
+    <div class="section-label fade-in">Since 1923</div>
+    <h2 class="fade-in fade-in-delay-1">
+      THE HISTORY OF HUMMEL
+      <span>百年品牌史</span>
+    </h2>
+    <div class="history-layout">
+      <div class="history-image fade-in fade-in-delay-2">
+        <img src="assets/history_1972.png" alt="hummel 1972 Munich Olympics" loading="lazy">
+      </div>
+      <div class="history-text fade-in fade-in-delay-3">
+        <p class="history-quote">"The story of hummel is a story of the bumblebee — the bumblebee who defies gravity and flies, even though this goes against both logic and nature."</p>
+        <p class="history-body">
+          1923年，Albert Messmer 在德国汉堡创立了 hummel，并发明了世界上首批带钉足球鞋，开启了百年运动传奇。
+          1974年，标志性的"大黄蜂"符号诞生，成为挑战不可能的品牌精神象征。
+        </p>
+        <p class="history-body">
+          从1980年代赞助皇家马德里、托特纳姆热刺、阿斯顿维拉，到1992年丹麦国家队奇迹般夺得欧洲杯冠军；
+          从1999年 Christian Stadil 开创"Sport Fashion"跨界时尚，到2023年品牌百年庆典——
+          hummel 始终以"挑战者"姿态，用运动改变世界。
+        </p>
+        <p class="history-tag">WE ARE THE BUMBLEBEE. AND WE ARE STILL FLYING.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 5: German Trainer -->
+<section class="german-trainer section section-light" id="products">
+  <div class="section-label fade-in">Product Collection 01</div>
+  <h2 class="fade-in fade-in-delay-1">
+    德训鞋系列
+    <span>GERMAN TRAINER</span>
+  </h2>
+  <p class="product-specs fade-in fade-in-delay-2">德训鞋系列 &middot; T-toe设计 &middot; 涂层皮革与麂皮拼接 &middot; EVA中底 &middot; Ortholite&reg;鞋垫</p>
+  <div class="product-banner fade-in fade-in-delay-3">
+    <img src="assets/sport_culture_banner_v2.png" alt="Sport Culture Banner" loading="lazy">
+  </div>
+</section>
+
+<!-- Section 5: Retro Runner -->
+<section class="retro-runner section section-transition" id="retro">
+  <h2 class="fade-in">
+    复古跑鞋系列
+    <span>HERITAGE RUNNING</span>
+  </h2>
+  <p class="retro-runner-desc fade-in fade-in-delay-1">Stadil 系列 &middot; 传承蜂箭Logo与斜条纹设计 &middot; 高帮低帮多廓形 &middot; 从球场到街头</p>
+  <div class="retro-product fade-in fade-in-delay-2">
+    <img src="assets/retro_runner_new.png" alt="hummel Retro Runner" loading="lazy">
+  </div>
+</section>
+
+<!-- Section 6: Sport Culture AW25 -->
+<section class="sport-culture section section-dark" id="culture">
+  <div class="sport-culture-bg">
+    <img src="assets/sport_culture_new.png" alt="Sport Culture AW25" loading="lazy">
+  </div>
+  <div class="sport-culture-overlay"></div>
+  <div class="sport-culture-content">
+    <h2 class="fade-in">SPORT CULTURE</h2>
+    <div class="season fade-in fade-in-delay-1">AUTUMN WINTER 2025</div>
+    <p class="culture-quote fade-in fade-in-delay-2">"Our culture is sports.<br>And our culture unites."</p>
+    <p class="culture-detail fade-in fade-in-delay-3">"Silhouettes are retro, sporty and loose serving duped neutrals alongside energetic pops of colour."</p>
+  </div>
+</section>
+
+<!-- Section 7: Lifestyle Products / 生活方式产品 -->
+<section class="lifestyle section section-transition" id="lifestyle">
+  <div class="lifestyle-inner">
+    <div class="section-label fade-in">Apparel Collection</div>
+    <h2 class="fade-in fade-in-delay-1">
+      LIFESTYLE
+      <span>生活方式系列</span>
+    </h2>
+    <p class="lifestyle-intro fade-in fade-in-delay-2">
+      从球场到日常，hummel生活方式系列将百年运动基因注入每一件单品。<br>
+      复古档案设计 × 北欧质感面料 × 现代都市剪裁。
+    </p>
+    <div class="lifestyle-grid">
+      <div class="lifestyle-item fade-in fade-in-delay-1">
+        <div class="lifestyle-image">
+          <img src="assets/lifestyle_women_street.png" alt="hummel Women Navy Tracksuit" loading="lazy">
+        </div>
+        <div class="lifestyle-tag">WOMEN / TRACKSUIT</div>
+        <h3>海军蓝运动套装</h3>
+        <p>海军蓝拉链夹克与运动短裤，袖筒经典蜂箭条纹。复古廓形搭配gum sole鞋款，街头运动造型首选。</p>
+      </div>
+      <div class="lifestyle-item fade-in fade-in-delay-2">
+        <div class="lifestyle-image">
+          <img src="assets/lifestyle_men_crosswalk.png" alt="hummel Men Striped Polo" loading="lazy">
+        </div>
+        <div class="lifestyle-tag">MEN / POLO</div>
+        <h3>条纹橄榄球Polo</h3>
+        <p>海军蓝与米白横条纹长袖Polo，复古橄榄球档案设计。搭配短裤与白袜，都市通勤与周末休闲皆宜。</p>
+      </div>
+      <div class="lifestyle-item fade-in fade-in-delay-3">
+        <div class="lifestyle-image">
+          <img src="assets/lifestyle_women_pink.png" alt="hummel Women Pink Tracksuit" loading="lazy">
+        </div>
+        <div class="lifestyle-tag">WOMEN / TRACKSUIT</div>
+        <h3>粉色拼色运动套装</h3>
+        <p>粉色与黑色拼色拉链夹克，侧身白条纹点缀。搭配黑色短裤，活力色彩点亮日常运动造型。</p>
+      </div>
+      <div class="lifestyle-item fade-in fade-in-delay-1">
+        <div class="lifestyle-image">
+          <img src="assets/lifestyle_men_polo.png" alt="hummel Men Blue Striped Polo" loading="lazy">
+        </div>
+        <div class="lifestyle-tag">MEN / POLO</div>
+        <h3>浅蓝条纹Polo</h3>
+        <p>浅蓝白条纹长袖Polo，白色领片撞色。复古网球美学，搭配深色长裤，极简北欧通勤风格。</p>
+      </div>
+      <div class="lifestyle-item fade-in fade-in fade-in-delay-2">
+        <div class="lifestyle-image">
+          <img src="assets/lifestyle_women_picnic.png" alt="hummel Women Sage Sneakers" loading="lazy">
+        </div>
+        <div class="lifestyle-tag">WOMEN / FOOTWEAR</div>
+        <h3>鼠尾草绿复古鞋</h3>
+        <p>鼠尾草绿麂皮鞋面搭配白色蜂箭条纹与gum sole。复古训练鞋廓形，公园野餐与户外场景的点睛单品。</p>
+      </div>
+      <div class="lifestyle-item fade-in fade-in-delay-3">
+        <div class="lifestyle-image">
+          <img src="assets/lifestyle_women_navy.jpeg" alt="hummel Women Navy Windbreaker" loading="lazy">
+        </div>
+        <div class="lifestyle-tag">WOMEN / OUTERWEAR</div>
+        <h3>海军蓝拼色风衣</h3>
+        <p>海军蓝与白色拼色拉链风衣，内搭运动背心与高腰legging。都市街头运动风，功能与时尚兼具。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 8: Nordic Style / 北欧穿搭 -->
+<section class="nordic-style section section-dark" id="nordic">
+  <div class="nordic-inner">
+    <div class="section-label fade-in">Style Philosophy</div>
+    <h2 class="fade-in fade-in-delay-1">
+      NORDIC SPORT STYLE
+      <span>北欧运动美学</span>
+    </h2>
+    <p class="nordic-intro fade-in fade-in-delay-2">
+      源自丹麦的设计基因，将功能主义与简约美学完美融合。<br>
+      以克制、质感与细节，重新定义运动与日常的边界。
+    </p>
+    <div class="nordic-grid">
+      <div class="nordic-item fade-in fade-in-delay-1">
+        <div class="nordic-tag">Retro Sportswear</div>
+        <h3>复古运动</h3>
+        <p>70-80年代足球档案设计，经典条纹与蜂箭Logo，复古配色与现代剪裁碰撞。</p>
+      </div>
+      <div class="nordic-item fade-in fade-in-delay-2">
+        <div class="nordic-tag">Clean Fit</div>
+        <h3>极简通勤</h3>
+        <p>宽松廓形搭配质感面料，以简约配色和利落线条打造"穿得出街"的运动单品。</p>
+      </div>
+      <div class="nordic-item fade-in fade-in-delay-3">
+        <div class="nordic-tag">Gorpcore</div>
+        <h3>户外机能</h3>
+        <p>功能面料与都市造型的融合，PULSE科技系列为日常穿搭注入专业运动性能。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 9: Clean Fit -->
+<section class="clean-fit section section-light" id="cleanfit">
+  <div class="clean-fit-image fade-in">
+    <img src="assets/new_cleanfit.jpg" alt="Clean Fit Model" loading="lazy">
+  </div>
+  <h2 class="fade-in fade-in-delay-1">CLEAN FIT</h2>
+  <p class="subtitle fade-in fade-in-delay-2">复古运动 &times; 北欧极简 &times; 日常通勤</p>
+</section>
+
+<!-- Section 10: Global Ambition / 欧洲影响力 + 中国 -->
+<section class="china-ambition section section-dark" id="china">
+  <div class="china-inner">
+    <h2 class="fade-in">
+      GLOBAL PRESENCE
+      <span>全球布局 · 全力中国</span>
+    </h2>
+    <div class="europe-bar fade-in fade-in-delay-1">
+      <p class="europe-title">European Heritage & Influence / 欧洲根基</p>
+      <p class="europe-desc">
+        作为丹麦百年品牌，hummel在欧洲手球、足球领域拥有深厚根基。从皇家马德里、托特纳姆热刺到丹麦国家队，hummel是欧洲体育文化不可分割的一部分。Real Betis、云达不莱梅等顶级俱乐部的官方赞助商身份，持续巩固品牌在欧洲市场的 heritage 与影响力。品牌年营业额达20亿丹麦克朗，覆盖全球35+市场。
+      </p>
+    </div>
+    <div class="china-divider fade-in"></div>
+    <div class="china-main fade-in fade-in-delay-2">
+      <p class="china-main-title">ALL-IN ON CHINA / 全力投入中国</p>
+      <p class="china-main-intro">中国市场不再只是"机会"——而是 hummel 全球战略的核心引擎。我们将以前所未有的决心和资源，全力开拓这片运动生活方式的蓝海市场。</p>
+    </div>
+    <div class="china-strategies">
+      <div class="strategy-item fade-in fade-in-delay-2">
+        <div class="strategy-num">01</div>
+        <div class="strategy-text">
+          <h3>高端错位竞争 <span>Premium Positioning</span></h3>
+          <p>如同FILA以800-1200元价格带避开红海，hummel以百年heritage与北欧设计美学占据中高端休闲运动空白地带，拒绝卷入价格战。</p>
+        </div>
+      </div>
+      <div class="strategy-item fade-in fade-in-delay-3">
+        <div class="strategy-num">02</div>
+        <div class="strategy-text">
+          <h3>直营+体验店 <span>Direct Retail + Experience</span></h3>
+          <p>参考On昂跑"直营+大店"路径，在北上广深等核心商圈开设品牌旗舰店，将门店打造为沉浸式体验空间，建立深度消费者连接。</p>
+        </div>
+      </div>
+      <div class="strategy-item fade-in fade-in-delay-4">
+        <div class="strategy-num">03</div>
+        <div class="strategy-text">
+          <h3>社群深度运营 <span>Community-Driven Growth</span></h3>
+          <p>以足球、手球、复古跑鞋文化构建核心社群，通过城市跑、草根赛事、球鞋文化活动驱动口碑与复购，建立真实品牌认同。</p>
+        </div>
+      </div>
+      <div class="strategy-item fade-in fade-in-delay-4">
+        <div class="strategy-num">04</div>
+        <div class="strategy-text">
+          <h3>本土化内容共创 <span>Localized Content Creation</span></h3>
+          <p>与KOL深度共创小红书、B站、抖音平台内容，以复古运动穿搭、Clean Fit、品牌故事为核心，打造属于中国消费者的hummel叙事。</p>
+        </div>
+      </div>
+    </div>
+    <p class="china-quote fade-in fade-in-delay-4">"hummel正在书写在中国的新篇章——从heritage到future，我们全力以赴。"</p>
+  </div>
+</section>
+
+<!-- Section 11: KOL Collaboration -->
+<section class="kol-section section section-transition" id="collaborate">
+  <div class="kol-inner">
+    <h2 class="fade-in">
+      WHY COLLABORATE
+      <span>为什么选择 hummel</span>
+    </h2>
+    <div class="kol-grid">
+      <div class="kol-card fade-in fade-in-delay-1">
+        <div class="kol-num">01</div>
+        <h3>差异化内容 <span>Differentiated Content</span></h3>
+        <p>百年丹麦品牌基因，区别于泛滥的街头与运动品牌，为内容创作提供独特叙事素材</p>
+      </div>
+      <div class="kol-card fade-in fade-in-delay-2">
+        <div class="kol-num">02</div>
+        <h3>高话题潜力 <span>High Engagement Potential</span></h3>
+        <p>"小众宝藏品牌"标签天然具备种草力，复古运动趋势与hummel高度契合</p>
+      </div>
+      <div class="kol-card fade-in fade-in-delay-3">
+        <div class="kol-num">03</div>
+        <h3>穿搭适配度 <span>Style Versatility</span></h3>
+        <p>德训鞋、复古跑鞋、Clean Fit穿搭横跨多个内容赛道，适配不同博主风格</p>
+      </div>
+      <div class="kol-card fade-in fade-in-delay-4">
+        <div class="kol-num">04</div>
+        <h3>上升期红利 <span>Growth Momentum</span></h3>
+        <p>品牌处于中国市场早期增长阶段，合作空间大，共创价值高</p>
+      </div>
+      <div class="kol-card fade-in fade-in-delay-4">
+        <div class="kol-num">05</div>
+        <h3>品牌助力扶持 <span>Creator Empowerment</span></h3>
+        <p>品牌助力扶持同频创作者，同步推行中国创作者激励计划，未来预计投入更多资源与创作者共同成长。</p>
+      </div>
+    </div>
+    <div class="kol-platforms fade-in">
+      <span class="platform-tag">小红书 &middot; 穿搭种草</span>
+      <span class="platform-tag">Bilibili &middot; 深度内容</span>
+      <span class="platform-tag">抖音 &middot; 短视频</span>
+      <span class="platform-tag">得物 &middot; 球鞋文化</span>
+    </div>
+  </div>
+</section>
+
+<!-- Section 12: CTA Ending -->
+<section class="cta-ending section section-dark" id="contact">
+  <div class="cta-bg">
+    <img src="assets/ref2_blue.png" alt="hummel Ending" loading="lazy">
+  </div>
+  <div class="cta-overlay"></div>
+  <div class="cta-content">
+    <h2 class="fade-in">
+      Let's Work Together
+      <span>期待合作</span>
+    </h2>
+    <div class="cta-signature fade-in fade-in-delay-1">hummel &middot; 1923 &middot; DENMARK</div>
+    <div class="cta-contact fade-in fade-in-delay-2">
+      <div class="cta-contact-item"><strong>HQ</strong>&ensp;Copenhagen, Denmark</div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <span class="footer-text">&copy; 2025 hummel A/S. All rights reserved.</span>
+  <span class="footer-text">Heritage-Driven Sport Lifestyle Brand Since 1923</span>
+</footer>
+
+<script>
+// ========== Intersection Observer: Fade-in Animation ==========
+document.addEventListener('DOMContentLoaded', () => {
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px 0px -60px 0px',
+    threshold: 0.1
+  };
+
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+
+  // ========== Navigation Background on Scroll ==========
+  const nav = document.getElementById('nav');
+  let lastScroll = 0;
+
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting && entry.target.id === 'hero') {
+        nav.classList.add('scrolled');
+      } else if (entry.isIntersecting && entry.target.id === 'hero') {
+        nav.classList.remove('scrolled');
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const heroSection = document.getElementById('hero');
+  if (heroSection) navObserver.observe(heroSection);
+
+  // Fallback: scroll-based nav styling
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    if (scrollY > window.innerHeight * 0.5) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+    lastScroll = scrollY;
+  }, { passive: true });
+
+  // ========== Hero Parallax ==========
+  const heroBg = document.querySelector('.hero-bg img');
+  const heroContent = document.querySelector('.hero-content');
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const heroHeight = window.innerHeight;
+
+    if (scrollY < heroHeight) {
+      const parallaxOffset = scrollY * 0.35;
+      if (heroBg) {
+        heroBg.style.transform = `translateY(${parallaxOffset}px) scale(1.05)`;
+      }
+      if (heroContent) {
+        heroContent.style.transform = `translateY(${scrollY * 0.15}px)`;
+        heroContent.style.opacity = 1 - (scrollY / heroHeight) * 0.8;
+      }
+    }
+  }, { passive: true });
+
+  // ========== Smooth Scroll for Nav Links ==========
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(anchor.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
