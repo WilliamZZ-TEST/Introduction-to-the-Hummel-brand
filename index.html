@@ -64,9 +64,16 @@ a {
   z-index: 1000;
   padding: 24px 48px;
   display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  transition: background 0.6s var(--transition-smooth), padding 0.4s var(--transition-smooth);
+}
+
+.nav-inner {
+  display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: background 0.6s var(--transition-smooth), padding 0.4s var(--transition-smooth);
+  width: 100%;
 }
 
 .nav.scrolled {
@@ -86,7 +93,7 @@ a {
 
 .nav-links {
   display: flex;
-  gap: 32px;
+  gap: 28px;
   list-style: none;
 }
 
@@ -101,6 +108,67 @@ a {
 
 .nav-links a:hover {
   color: var(--white);
+}
+
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 1001;
+}
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--white);
+  transition: all 0.3s ease;
+}
+.nav-toggle.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.nav-mobile {
+  display: none;
+  list-style: none;
+  flex-direction: column;
+  gap: 0;
+  background: rgba(17, 17, 17, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  margin: 0 -48px;
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+.nav-mobile.active {
+  max-height: 500px;
+}
+.nav-mobile li {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+.nav-mobile a {
+  display: block;
+  padding: 16px 48px;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.3s ease, background 0.3s ease;
+}
+.nav-mobile a:hover {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 /* ========== Section Base ========== */
@@ -1232,6 +1300,18 @@ a {
     display: none;
   }
 
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-mobile {
+    display: flex;
+    margin: 0 -24px;
+  }
+  .nav-mobile a {
+    padding: 16px 24px;
+  }
+
   .brand-statement {
     padding: 100px 24px 80px;
   }
@@ -1328,6 +1408,30 @@ a {
   .kol-grid {
     grid-template-columns: 1fr;
   }
+
+  .heritage-insert {
+    max-width: 100%;
+  }
+
+  .history-inner h2 {
+    font-size: 2rem;
+  }
+
+  .history-quote {
+    font-size: 1rem;
+  }
+
+  .cta-content h2 {
+    font-size: 2rem;
+  }
+
+  .lifestyle-item h3 {
+    font-size: 1.1rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 </style>
 </head>
@@ -1335,11 +1439,32 @@ a {
 
 <!-- Navigation -->
 <nav class="nav" id="nav">
-  <div class="nav-logo">hummel</div>
-  <ul class="nav-links">
+  <div class="nav-inner">
+    <div class="nav-logo">hummel</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#heritage">Heritage</a></li>
+      <li><a href="#history">History</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#culture">Culture</a></li>
+      <li><a href="#lifestyle">Lifestyle</a></li>
+      <li><a href="#nordic">Nordic</a></li>
+      <li><a href="#china">China</a></li>
+      <li><a href="#collaborate">Collaborate</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+  <ul class="nav-mobile" id="navMobile">
     <li><a href="#heritage">Heritage</a></li>
+    <li><a href="#history">History</a></li>
     <li><a href="#products">Products</a></li>
     <li><a href="#culture">Culture</a></li>
+    <li><a href="#lifestyle">Lifestyle</a></li>
+    <li><a href="#nordic">Nordic</a></li>
+    <li><a href="#china">China</a></li>
     <li><a href="#collaborate">Collaborate</a></li>
   </ul>
 </nav>
@@ -1347,7 +1472,7 @@ a {
 <!-- Section 1: Hero -->
 <section class="hero section section-dark" id="hero">
   <div class="hero-bg">
-    <img src="assets/sport_culture_hero.png" alt="hummel Sport Culture Campaign" loading="eager">
+    <img src="assets/sport_culture_hero.jpg" alt="hummel Sport Culture Campaign" loading="eager" decoding="async">
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
@@ -1386,7 +1511,7 @@ a {
 <section class="heritage section section-dark" id="heritage">
   <div class="heritage-inner">
     <div class="heritage-visual fade-in">
-      <img src="assets/heritage_campaign.png" alt="hummel Heritage" loading="lazy">
+      <img src="assets/heritage_campaign.png" alt="hummel Heritage" loading="lazy" decoding="async">
     </div>
     <div class="heritage-text">
       <h2 class="fade-in">Heritage / 传承</h2>
@@ -1395,7 +1520,7 @@ a {
         <span>Century of Sport</span>
       </h1>
       <div class="heritage-insert fade-in fade-in-delay-2">
-        <img src="assets/heritage_1970.webp" alt="hummel 1970s Danish National Team" loading="lazy">
+        <img src="assets/heritage_1970.webp" alt="hummel 1970s Danish National Team" loading="lazy" decoding="async">
         <p class="heritage-insert-caption">1970s · Danish National Team / 丹麦国家队</p>
       </div>
       <p class="fade-in fade-in-delay-2">
@@ -1429,7 +1554,7 @@ a {
     </h2>
     <div class="history-layout">
       <div class="history-image fade-in fade-in-delay-2">
-        <img src="assets/history_1972.png" alt="hummel 1972 Munich Olympics" loading="lazy">
+        <img src="assets/history_1972.png" alt="hummel 1972 Munich Olympics" loading="lazy" decoding="async">
       </div>
       <div class="history-text fade-in fade-in-delay-3">
         <p class="history-quote">"The story of hummel is a story of the bumblebee — the bumblebee who defies gravity and flies, even though this goes against both logic and nature."</p>
@@ -1457,7 +1582,7 @@ a {
   </h2>
   <p class="product-specs fade-in fade-in-delay-2">德训鞋系列 &middot; T-toe设计 &middot; 涂层皮革与麂皮拼接 &middot; EVA中底 &middot; Ortholite&reg;鞋垫</p>
   <div class="product-banner fade-in fade-in-delay-3">
-    <img src="assets/sport_culture_banner_v2.png" alt="Sport Culture Banner" loading="lazy">
+    <img src="assets/sport_culture_banner_v2.jpg" alt="Sport Culture Banner" loading="lazy" decoding="async">
   </div>
 </section>
 
@@ -1469,14 +1594,14 @@ a {
   </h2>
   <p class="retro-runner-desc fade-in fade-in-delay-1">Stadil 系列 &middot; 传承蜂箭Logo与斜条纹设计 &middot; 高帮低帮多廓形 &middot; 从球场到街头</p>
   <div class="retro-product fade-in fade-in-delay-2">
-    <img src="assets/retro_runner_new.png" alt="hummel Retro Runner" loading="lazy">
+    <img src="assets/retro_runner_new.jpg" alt="hummel Retro Runner" loading="lazy" decoding="async">
   </div>
 </section>
 
 <!-- Section 6: Sport Culture AW25 -->
 <section class="sport-culture section section-dark" id="culture">
   <div class="sport-culture-bg">
-    <img src="assets/sport_culture_new.png" alt="Sport Culture AW25" loading="lazy">
+    <img src="assets/sport_culture_new.png" alt="Sport Culture AW25" loading="lazy" decoding="async">
   </div>
   <div class="sport-culture-overlay"></div>
   <div class="sport-culture-content">
@@ -1502,7 +1627,7 @@ a {
     <div class="lifestyle-grid">
       <div class="lifestyle-item fade-in fade-in-delay-1">
         <div class="lifestyle-image">
-          <img src="assets/lifestyle_women_street.png" alt="hummel Women Navy Tracksuit" loading="lazy">
+          <img src="assets/lifestyle_women_street.jpg" alt="hummel Women Navy Tracksuit" loading="lazy" decoding="async">
         </div>
         <div class="lifestyle-tag">WOMEN / TRACKSUIT</div>
         <h3>海军蓝运动套装</h3>
@@ -1510,7 +1635,7 @@ a {
       </div>
       <div class="lifestyle-item fade-in fade-in-delay-2">
         <div class="lifestyle-image">
-          <img src="assets/lifestyle_men_crosswalk.png" alt="hummel Men Striped Polo" loading="lazy">
+          <img src="assets/lifestyle_men_crosswalk.jpg" alt="hummel Men Striped Polo" loading="lazy" decoding="async">
         </div>
         <div class="lifestyle-tag">MEN / POLO</div>
         <h3>条纹橄榄球Polo</h3>
@@ -1518,7 +1643,7 @@ a {
       </div>
       <div class="lifestyle-item fade-in fade-in-delay-3">
         <div class="lifestyle-image">
-          <img src="assets/lifestyle_women_pink.png" alt="hummel Women Pink Tracksuit" loading="lazy">
+          <img src="assets/lifestyle_women_pink.jpg" alt="hummel Women Pink Tracksuit" loading="lazy" decoding="async">
         </div>
         <div class="lifestyle-tag">WOMEN / TRACKSUIT</div>
         <h3>粉色拼色运动套装</h3>
@@ -1526,7 +1651,7 @@ a {
       </div>
       <div class="lifestyle-item fade-in fade-in-delay-1">
         <div class="lifestyle-image">
-          <img src="assets/lifestyle_men_polo.png" alt="hummel Men Blue Striped Polo" loading="lazy">
+          <img src="assets/lifestyle_men_polo.png" alt="hummel Men Blue Striped Polo" loading="lazy" decoding="async">
         </div>
         <div class="lifestyle-tag">MEN / POLO</div>
         <h3>浅蓝条纹Polo</h3>
@@ -1534,7 +1659,7 @@ a {
       </div>
       <div class="lifestyle-item fade-in fade-in fade-in-delay-2">
         <div class="lifestyle-image">
-          <img src="assets/lifestyle_women_picnic.png" alt="hummel Women Sage Sneakers" loading="lazy">
+          <img src="assets/lifestyle_women_picnic.jpg" alt="hummel Women Sage Sneakers" loading="lazy" decoding="async">
         </div>
         <div class="lifestyle-tag">WOMEN / FOOTWEAR</div>
         <h3>鼠尾草绿复古鞋</h3>
@@ -1542,7 +1667,7 @@ a {
       </div>
       <div class="lifestyle-item fade-in fade-in-delay-3">
         <div class="lifestyle-image">
-          <img src="assets/lifestyle_women_navy.jpeg" alt="hummel Women Navy Windbreaker" loading="lazy">
+          <img src="assets/lifestyle_women_navy.jpeg" alt="hummel Women Navy Windbreaker" loading="lazy" decoding="async">
         </div>
         <div class="lifestyle-tag">WOMEN / OUTERWEAR</div>
         <h3>海军蓝拼色风衣</h3>
@@ -1587,7 +1712,7 @@ a {
 <!-- Section 9: Clean Fit -->
 <section class="clean-fit section section-light" id="cleanfit">
   <div class="clean-fit-image fade-in">
-    <img src="assets/new_cleanfit.jpg" alt="Clean Fit Model" loading="lazy">
+    <img src="assets/new_cleanfit.jpg" alt="Clean Fit Model" loading="lazy" decoding="async">
   </div>
   <h2 class="fade-in fade-in-delay-1">CLEAN FIT</h2>
   <p class="subtitle fade-in fade-in-delay-2">复古运动 &times; 北欧极简 &times; 日常通勤</p>
@@ -1691,7 +1816,7 @@ a {
 <!-- Section 12: CTA Ending -->
 <section class="cta-ending section section-dark" id="contact">
   <div class="cta-bg">
-    <img src="assets/ref2_blue.png" alt="hummel Ending" loading="lazy">
+    <img src="assets/ref2_blue.jpg" alt="hummel Ending" loading="lazy" decoding="async">
   </div>
   <div class="cta-overlay"></div>
   <div class="cta-content">
@@ -1790,6 +1915,36 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // ========== Mobile Menu Toggle ==========
+  const navToggle = document.getElementById('navToggle');
+  const navMobile = document.getElementById('navMobile');
+
+  if (navToggle && navMobile) {
+    navToggle.addEventListener('click', () => {
+      const isActive = navToggle.classList.toggle('active');
+      navMobile.classList.toggle('active');
+      navToggle.setAttribute('aria-expanded', isActive);
+    });
+
+    // Close mobile menu when a link is clicked
+    navMobile.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navToggle.classList.remove('active');
+        navMobile.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!navToggle.contains(e.target) && !navMobile.contains(e.target)) {
+        navToggle.classList.remove('active');
+        navMobile.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
 });
 </script>
 </body>
